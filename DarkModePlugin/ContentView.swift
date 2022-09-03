@@ -9,8 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @StateObject var appColor = AppColor()
-    @State private var darkModeOn: Bool = false
+    
+    @AppStorage("darkModeStatus") private var darkModeOn: Bool = false
+    @StateObject var appColor = AppColor(DarkisOn: false)
+    
+    
     
     var body: some View {
         
@@ -23,6 +26,9 @@ struct ContentView: View {
                         .padding()
                 }
                 .foregroundColor(appColor.textColor)
+                .onAppear {
+                    appColor.DarkisOn = darkModeOn
+                    appColor.changeColor()                }
                 
                 
             }
@@ -39,8 +45,11 @@ struct ContentView: View {
                     
                     Toggle("Dark Mode", isOn: $darkModeOn).onChange(of: darkModeOn) {
                         value in
-                        appColor.DarkisOn = value
-                        appColor.changeColor()
+                        if darkModeOn == true {
+                            appColor.DarkisOn = value
+                            appColor.changeColor()
+                        }
+                        
                         
                     }
                         .padding()

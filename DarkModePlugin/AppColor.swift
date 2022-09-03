@@ -17,11 +17,16 @@ struct RelativeColor {
 class AppColor: ObservableObject {
     @Published var backgroundColor = RelativeColor.backgroundLight
     @Published var textColor = RelativeColor.foregroundLight
-    @Published var DarkisOn: Bool = false
+    var DarkisOn: Bool = false
+    
+    init(DarkisOn: Bool) {
+        self.DarkisOn = DarkisOn
+    }
+    
     
     
     func changeColor () {
-        if DarkisOn == true {
+        if self.DarkisOn == true {
             backgroundColor = RelativeColor.backgroundDark
             textColor = RelativeColor.foregroundDark
             

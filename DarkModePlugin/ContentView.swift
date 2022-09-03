@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @StateObject var appColor = AppColor()
+    @State private var darkModeOn: Bool = false
     
     var body: some View {
         
@@ -21,6 +22,7 @@ struct ContentView: View {
                         .font(.title)
                         .padding()
                 }
+                .foregroundColor(appColor.textColor)
                 
                 
             }
@@ -33,7 +35,19 @@ struct ContentView: View {
                     Text("Settings")
                         .font(.title)
                         .padding()
+                        .foregroundColor(appColor.textColor)
+                    
+                    Toggle("Dark Mode", isOn: $darkModeOn).onChange(of: darkModeOn) {
+                        value in
+                        appColor.DarkisOn = value
+                        appColor.changeColor()
+                        
+                    }
+                        .padding()
+                        .foregroundColor(appColor.textColor)
+                    
                 }
+                
                 
             }
             .tabItem {

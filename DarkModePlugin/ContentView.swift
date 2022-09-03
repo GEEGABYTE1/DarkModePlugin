@@ -8,9 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var backgroundColor = Color.blue
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        
+        ZStack {
+            backgroundColor.ignoresSafeArea()
+            VStack {
+                Text("Landing Page 🌈")
+            }
+            
+            
+        }
+        
+    
+        
     }
 }
 

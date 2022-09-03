@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var backgroundColor = AppColor.backgroundLight
+    
+    @StateObject var appColor = AppColor()
+    
     var body: some View {
         
         TabView {
             ZStack {
-                backgroundColor.ignoresSafeArea()
+                appColor.backgroundColor.ignoresSafeArea()
                 VStack {
                     Text("Landing Page 🌈")
                         .font(.title)
@@ -26,7 +28,7 @@ struct ContentView: View {
                 Label("Landing", systemImage:"house")
             }
             ZStack {
-                backgroundColor.ignoresSafeArea()
+                appColor.backgroundColor.ignoresSafeArea()
                 VStack {
                     Text("Settings")
                         .font(.title)
